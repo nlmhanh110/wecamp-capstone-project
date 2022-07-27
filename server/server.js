@@ -27,5 +27,5 @@ app.use("/api/cruds", crudRoutes);
 //app.use("/api/auth", authRoute);
 
 // listening on port
-app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));
-module.exports = app 
+const server = app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));
+module.exports = server 
