@@ -35,7 +35,7 @@ const crud_details = (req, res) => {
 const crud_update = (req, res) => {
 	Crud.findByIdAndUpdate(req.params.id, req.body)
 		.then(function () {
-			res.status(200).json("Crud updated");
+			res.status(200).json({"message":"Crud updated"});
 		})
 		.catch(function (err) {
 			res.status(422).send({"message":"Crud update failed"} );
@@ -46,11 +46,11 @@ const crud_update = (req, res) => {
 const crud_delete = (req, res) => {
 	Crud.findById(req.params.id, function (err, crud) {
 		if (!crud) {
-			res.status(404).send("Crud not found");
+			res.status(404).send({"message":"Crud not found"} );
 		} else {
 			Crud.findByIdAndRemove(req.params.id)
 				.then(function () {
-					res.status(200).json("Crud deleted");
+					res.status(200).json({"message":"Crud deleted"} );
 				})
 				.catch(function (err) {
 					res.status(400).send({"message":"Crud delete failed"}  );
