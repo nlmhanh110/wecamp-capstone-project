@@ -93,7 +93,7 @@ function CrudAdd(props) {
 					<label>Website/Social Link</label>
 					<input
 						name="link"
-						type="url"
+						type="url"	
 						value={crud.link}
 						onChange={handleChange}
 						className="form-control"

@@ -1,0 +1,169 @@
+{
+  "create": [
+    {
+      "companyName": "Atlantic IT Solutions",
+      "phone": "251-911-603566",
+      "email": "info@atlanticplc.com",
+      "location": "Wello Sefer, Addis Ababa",
+      "link": "https://atlanticplc.com",
+      "description": "Atlantic IT Solutions is an ICT Company established in early 2008 GC in Ethiopia"
+    },
+    {
+      "companyName": "",
+      "phone": "251-911-603566",
+      "email": "info@atlanticplc.com",
+      "location": "Wello Sefer, Addis Ababa",
+      "link": "https://atlanticplc.com",
+      "description": "Atlantic IT Solutions is an ICT Company established in early 2008 GC in Ethiopia"
+    },
+    {
+      "companyName": "Atlantic IT Solutions",
+      "phone": "",
+      "email": "info@atlanticplc.com",
+      "location": "Wello Sefer, Addis Ababa",
+      "link": "https://atlanticplc.com",
+      "description": "Atlantic IT Solutions is an ICT Company established in early 2008 GC in Ethiopia"
+    },
+    {
+      "companyName": "Atlantic IT Solutions",
+      "phone": "251-911-603566",
+      "email": "",
+      "location": "Wello Sefer, Addis Ababa",
+      "link": "https://atlanticplc.com",
+      "description": "Atlantic IT Solutions is an ICT Company established in early 2008 GC in Ethiopia"
+    },
+    {
+      "companyName": "Atlantic IT Solutions",
+      "phone": "251-911-603566",
+      "email": "info@atlanticplc.com",
+      "location": "",
+      "link": "https://atlanticplc.com",
+      "description": "Atlantic IT Solutions is an ICT Company established in early 2008 GC in Ethiopia"
+    },
+    {
+      "companyName": "Atlantic IT Solutions",
+      "phone": "251-911-603566",
+      "email": "info@atlanticplc.com",
+      "location": "Wello Sefer, Addis Ababa",
+      "link": "",
+      "description": "Atlantic IT Solutions is an ICT Company established in early 2008 GC in Ethiopia"
+    },
+    {
+      "companyName": "Atlantic IT Solutions",
+      "phone": "251-911-603566",
+      "email": "info@atlanticplc.com",
+      "location": "Wello Sefer, Addis Ababa",
+      "link": "https://atlanticplc.com",
+      "description": ""
+    },
+    {
+      "companyName": "",
+      "phone": "",
+      "email": "",
+      "location": "",
+      "link": "",
+      "description": ""
+    },
+    {
+      "companyName": "",
+      "phone": "251-456-603566",
+      "email": "hanh@gmail.com",
+      "location": "235 New York",
+      "link": "https://hanh.com",
+      "description": "A special company"
+    },
+    {
+      "companyName": "HanhNguyen IT Solutions",
+      "phone": "251-456-603566",
+      "email": "info@atlanticplc.com",
+      "location": "235 New York",
+      "link": "https://hanh.com",
+      "description": "A special company"
+    },
+    {
+      "companyName": "HanhNguyen IT Solutions",
+      "phone": "251-911-603566",
+      "email": "hanh@gmail.com",
+      "location": "235 New York",
+      "link": "https://hanh.com",
+      "description": "A special company"
+    },
+    {
+      "companyName": "HanhNguyen IT Solutions",
+      "phone": "251-456-603566",
+      "email": "hanhnguyen@gmail.com",
+      "location": "Wello Sefer, Addis Ababa",
+      "link": "https://hanh.com",
+      "description": "A special company"
+    },
+    {
+      "companyName": "HanhNguyen IT Solutions",
+      "phone": "251-456-603566",
+      "email": "hanhnguyen@gmail.com",
+      "location": "235 New York",
+      "link": "https://atlanticplc.com",
+      "description": "A special company"
+    },
+    {
+      "companyName": "HanhNguyen IT Solutions",
+      "phone": "251-456-603566",
+      "email": "hanhnguyen@gmail.com",
+      "location": "235 New York",
+      "link": "https://hanh.com",
+      "description": "Atlantic IT Solutions is an ICT Company established in early 2008 GC in Ethiopia"
+    },
+    {
+      "companyName": "HanhNguyen IT Solutions",
+      "phone": "251-456-603566"
+    }
+  ],
+  "invalidPhone": [
+    "fdsgfhsdgfjgsdhf",
+    "251-47-887456",
+    "458-656-456255",
+    "251-546-66464564",
+    "251-455-6456",
+    "251-8787-445468",
+    "4545456",
+    "jkhjkjhd@gmail.com",
+    "#%^%#^%^#",
+    "1232@$#$$@",
+    "123hfkjhsjdfhjkds"
+  ],
+  "invalidEmail": [
+    "123564897",
+    "hanhnguyen",
+    "hanhnguyen@",
+    "hanhnguyen@gmail",
+    "@%!^$@%",
+    "hang@gmail.c",
+    "hanh@g.c",
+    "%#@%%$@gmail",
+    "hanh@nguyen@gmail.com",
+    "abc#def@mail.com",
+    "abc.def@mail..com",
+    ".abc@mail.com",
+    "hanh nguyen@gmail.com",
+    "abc..def@mail.com"
+  ],
+  "invalidLink": [
+    "/main.html",
+    "        ",
+    "jkhjkjhd@gmail.com",
+    "#%^%#^%^#",
+    "1232@$#$$@",
+    "251577354354",
+    "www.example.com/main.html",
+    "http://www.example.com/   %20here.html",
+    "http://www.example.com/&%26here.html",
+    "http://www.example.com\\space%20here.html",
+    "http:www.example.com/main.html"
+  ],
+  "invalidString": [
+    "            ",
+    "#$$&#^&$^&^",
+    "4786574687",
+    "589347*#&*&(#",
+    "       77847&*(&*&"
+  ]
+}
