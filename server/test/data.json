@@ -65,56 +65,12 @@
       "description": ""
     },
     {
-      "companyName": "",
+      "companyName": "Hanh Nguyen",
       "phone": "251-456-603566",
       "email": "hanh@gmail.com",
       "location": "235 New York",
       "link": "https://hanh.com",
-      "description": "A special company"
-    },
-    {
-      "companyName": "HanhNguyen IT Solutions",
-      "phone": "251-456-603566",
-      "email": "info@atlanticplc.com",
-      "location": "235 New York",
-      "link": "https://hanh.com",
-      "description": "A special company"
-    },
-    {
-      "companyName": "HanhNguyen IT Solutions",
-      "phone": "251-911-603566",
-      "email": "hanh@gmail.com",
-      "location": "235 New York",
-      "link": "https://hanh.com",
-      "description": "A special company"
-    },
-    {
-      "companyName": "HanhNguyen IT Solutions",
-      "phone": "251-456-603566",
-      "email": "hanhnguyen@gmail.com",
-      "location": "Wello Sefer, Addis Ababa",
-      "link": "https://hanh.com",
-      "description": "A special company"
-    },
-    {
-      "companyName": "HanhNguyen IT Solutions",
-      "phone": "251-456-603566",
-      "email": "hanhnguyen@gmail.com",
-      "location": "235 New York",
-      "link": "https://atlanticplc.com",
-      "description": "A special company"
-    },
-    {
-      "companyName": "HanhNguyen IT Solutions",
-      "phone": "251-456-603566",
-      "email": "hanhnguyen@gmail.com",
-      "location": "235 New York",
-      "link": "https://hanh.com",
-      "description": "Atlantic IT Solutions is an ICT Company established in early 2008 GC in Ethiopia"
-    },
-    {
-      "companyName": "HanhNguyen IT Solutions",
-      "phone": "251-456-603566"
+      "description": "A special company "
     }
   ],
   "invalidPhone": [
@@ -147,7 +103,7 @@
     "abc..def@mail.com",
     "INFO@atlanticplc.com",
     "iNfo@atlanticplc.com",
-    "Info@atlanticplc.com"
+    "iNfo@atlanticplc.com"
   ],
   "invalidLink": [
     "/main.html",
@@ -163,10 +119,15 @@
     "http:www.example.com/main.html"
   ],
   "invalidString": [
-    "            ",
+    "         ",
     "#$$&#^&$^&^",
     "4786574687",
     "589347*#&*&(#",
     "       77847&*(&*&"
+  ],
+  "existedCompanyName": [
+    "atlantic it solutions",
+    "ATLANTIC IT SOLUTIONS",
+    "Atlantic IT Solutions"
   ]
 }
