@@ -8,31 +8,45 @@ export const viewDetailContactPage = {
     // BTN_EDIT:()=>cy.get('a').contains('Edit'),
     // BTN_DELETE:()=>cy.get('button').contains('Delete'),
     // BTN_CLOSE:()=>cy.get('a').contains('Close'),
-    checkCompanyName(name){
-        cy.get(this.TXT_COMPANYNAME).should('include.text',name)
+    checkCompanyName(name) {
+        cy.get(this.TXT_COMPANYNAME).should('include.text', name)
     },
-    checkPhone(phone){
-        cy.get('p').contains('Phone').get('a').should('include.text',phone)
+    checkPhone(phone) {
+        cy.contains('p','Phone').within(() =>{
+            cy.get('a').should('include.text', phone)})
     },
-    checkEmail(email){
-        cy.contains('Email').parent().should('include.text',email)
+    checkEmail(email) {
+        cy.contains('p','Email').should('include.text', email)
     },
-    checkLocation(location){
-        cy.contains('Location').parent().should('include.text',location)
+    checkLocation(location) {
+        cy.contains('p','Location').should('include.text', location)
     },
-    checkLink(link){
-        cy.get('p').contains('Link').get('a').should('include.text',link)
+    checkLink(link) {
+        cy.contains('p','Link').within(() =>{
+            cy.get('a').should('include.text', link)})
     },
-    checkDescription(description){
-        cy.get('p').contains('Description').get('p').should('include.text',description)
+    checkDescription(description) {
+        cy.contains('p','Description').within(() =>{
+            cy.get('p').should('include.text', description)})
     },
-    clickEdit(){
-        cy.get('a').contains('Edit').click()
+    clickEdit() {
+        cy.contains('a','Edit').click()
+        cy.wait(500)
     },
-    clickDelete(){
-        cy.get('button').contains('Delete').click()
+    clickDelete() {
+        cy.contains('button','Delete').click()
+        cy.wait(500)
     },
-    clickClose(){
-        cy.get('a').contains('Close').click()
+    clickClose() {
+        cy.contains('Close').click()
+        cy.wait(500)
+    },
+    checkContact(contact) {
+        this.checkCompanyName(contact.companyName)
+        this.checkPhone(contact.phone)
+        this.checkEmail(contact.email)
+        this.checkLocation(contact.location)
+        this.checkLink(contact.link)
+        this.checkDescription(contact.description)
     }
 }

@@ -27,9 +27,11 @@ export const createContactPage ={
     },
     clickSubmit(){
         cy.get(this.BTN_SUBMIT).click()
+        cy.wait(500)
     },
     clickCancel(){
         cy.get('button').contains('Cancel').click()
+        cy.wait(500)
     },
     checkCompanyNameValidationMessage(){
         cy.get(this.TXT_COMPANYNAME).invoke('prop','validationMessage').should('be.oneOf',['Please fill out this field.','Please match the requested format.'])
