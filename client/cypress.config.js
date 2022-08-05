@@ -5,10 +5,11 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    baseUrl:'http://localhost:3000',
-    env:{
-      "createUrl":"/cruds/new",
-      "tableViewUrl":"/cruds"
-    }
+    baseUrl: 'http://localhost:3000',
+    env: {
+      "createUrl": "/cruds/new",
+      "tableViewUrl": "/cruds",
+    },
+
   },
 });

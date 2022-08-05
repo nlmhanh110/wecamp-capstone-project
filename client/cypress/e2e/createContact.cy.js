@@ -1,6 +1,7 @@
 import { createContactPage } from "../pages/createContactPage";
 import { viewDetailContactPage } from "../pages/viewDetailContactPage";
 
+let createdContactId = []
 describe('Create a contact', () => {
     beforeEach(() => {
         cy.fixture("data.json").as('data')
@@ -9,97 +10,170 @@ describe('Create a contact', () => {
     it('Verify that user can create a new contact info successfully with valid data and no empty fields', () => {
         cy.get("@data").then((data) => {
             cy.createContact(data.create[0])
-            viewDetailContactPage.checkContact(data.create[1])
+            viewDetailContactPage.checkContact(data.create[0])
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
         })
     })
     it('Verify that user can not create a new contact when leaving Company Name field empty', () => {
         cy.get("@data").then((data) => {
             cy.createContact(data.create[1])
-            createContactPage.checkUrl(Cypress.env('createUrl'))
-            createContactPage.checkInvalidInput(1)
-            createContactPage.checkCompanyNameValidationMessage()
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
+            createContactPage
+                .checkUrl(Cypress.env('createUrl'))
+                .checkInvalidInput(1)
+                .checkCompanyNameValidationMessage()
         })
     })
     it('Verify that user can not create a new contact when leaving Phone field empty', () => {
         cy.get("@data").then((data) => {
             cy.createContact(data.create[2])
-            createContactPage.checkUrl(Cypress.env('createUrl'))
-            createContactPage.checkInvalidInput(1)
-            createContactPage.checkPhoneValidationMessage()
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
+            createContactPage
+                .checkUrl(Cypress.env('createUrl'))
+                .checkInvalidInput(1)
+                .checkPhoneValidationMessage()
         })
     })
     it('Verify that user can not create a new contact when leaving Email field empty', () => {
         cy.get("@data").then((data) => {
             cy.createContact(data.create[3])
-            createContactPage.checkUrl(Cypress.env('createUrl'))
-            createContactPage.checkInvalidInput(1)
-            createContactPage.checkEmailValidationMessage()
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
+            createContactPage
+                .checkUrl(Cypress.env('createUrl'))
+                .checkInvalidInput(1)
+                .checkEmailValidationMessage()
         })
     })
     it('Verify that user can not create a new contact when leaving Location field empty', () => {
         cy.get("@data").then((data) => {
             cy.createContact(data.create[4])
-            createContactPage.checkUrl(Cypress.env('createUrl'))
-            createContactPage.checkInvalidInput(1)
-            createContactPage.checkLocationValidationMessage()
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
+            createContactPage
+                .checkUrl(Cypress.env('createUrl'))
+                .checkInvalidInput(1)
+                .checkLocationValidationMessage()
         })
     })
     it('Verify that user can not create a new contact when leaving Description field empty', () => {
         cy.get("@data").then((data) => {
             cy.createContact(data.create[6])
-            createContactPage.checkUrl(Cypress.env('createUrl'))
-            createContactPage.checkInvalidTextArea(1)
-            createContactPage.checkDescriptionValidationMessage()
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
+            createContactPage
+                .checkUrl(Cypress.env('createUrl'))
+                .checkInvalidTextArea(1)
+                .checkDescriptionValidationMessage()
         })
     })
     it('Verify that user can not create a new contact when leaving all fields empty', () => {
         cy.get("@data").then((data) => {
             cy.createContact(data.create[7])
-            createContactPage.checkUrl(Cypress.env('createUrl'))
-            createContactPage.checkInvalidInput(4)
-            createContactPage.checkInvalidTextArea(1)
-            createContactPage.checkCompanyNameValidationMessage()
-            createContactPage.checkPhoneValidationMessage()
-            createContactPage.checkEmailValidationMessage()
-            createContactPage.checkLocationValidationMessage()
-            createContactPage.checkDescriptionValidationMessage()
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
+            createContactPage
+                .checkUrl(Cypress.env('createUrl'))
+                .checkInvalidInput(4)
+                .checkInvalidTextArea(1)
+                .checkCompanyNameValidationMessage()
+                .checkPhoneValidationMessage()
+                .checkEmailValidationMessage()
+                .checkLocationValidationMessage()
+                .checkDescriptionValidationMessage()
         })
     })
     it('Verify that user can not create a new contact with invalid Phone Number', () => {
         cy.get("@data").then((data) => {
+            cy.createContact(data.create[2])
             data.invalidPhone.forEach((val) => {
-                cy.createContact(data.create[2])
-                createContactPage.typePhone(val)
-                createContactPage.clickSubmit()
-                createContactPage.checkUrl(Cypress.env('createUrl'))
-                createContactPage.checkInvalidInput(1)
-                createContactPage.checkPhoneValidationMessage()
+                createContactPage
+                    .typePhone(val)
+                    .clickSubmit()
+                cy.url().then((url) => {
+                    if (!url.includes('new')) {
+                        const id = url.split('/').pop();
+                        createdContactId.push(id)
+                    }
+                })
+                createContactPage
+                    .checkUrl(Cypress.env('createUrl'))
+                    .checkInvalidInput(1)
+                    .checkPhoneValidationMessage()
             })
 
         })
     })
     it('Verify that user can not create a new contact with invalid Email', () => {
         cy.get("@data").then((data) => {
+            cy.createContact(data.create[3])
             data.invalidEmail.forEach((val) => {
-                cy.createContact(data.create[3])
-                createContactPage.typeEmail(val)
-                createContactPage.clickSubmit()
-                createContactPage.checkUrl(Cypress.env('createUrl'))
-                createContactPage.checkInvalidInput(1)
-                createContactPage.checkEmailValidationMessage(val)
+                createContactPage
+                    .typeEmail(val)
+                    .clickSubmit()
+                cy.url().then((url) => {
+                    if (!url.includes('new')) {
+                        const id = url.split('/').pop();
+                        createdContactId.push(id)
+                    }
+                })
+                createContactPage
+                    .checkUrl(Cypress.env('createUrl'))
+                    .checkInvalidInput(1)
+                    .checkEmailValidationMessage(val)
             })
 
         })
     })
-    it.only('Verify that user can not create a new contact with invalid Link', () => {
+    it('Verify that user can not create a new contact with invalid Link', () => {
         cy.get("@data").then((data) => {
+            cy.createContact(data.create[5])
             data.invalidLink.forEach((val) => {
-                cy.createContact(data.create[5])
-                createContactPage.typeLink(val)
-                createContactPage.clickSubmit()
-                createContactPage.checkUrl(Cypress.env('createUrl'))
-                createContactPage.checkInvalidInput(1)
-                createContactPage.checkLinkValidationMessage(val)
+                createContactPage
+                    .typeEmail('info@atlanticplc.com')
+                    .typeLink(val)
+                    .clickSubmit()
+                cy.url().then((url) => {
+                    if (!url.includes('new')) {
+                        const id = url.split('/').pop();
+                        createdContactId.push(id)
+                    }
+                })
+                createContactPage
+                    .checkUrl(Cypress.env('createUrl'))
+                    .checkInvalidInput(1)
+                    .checkLinkValidationMessage(val)
             })
 
         })
@@ -107,56 +181,99 @@ describe('Create a contact', () => {
 
     it('Verify that user can not create a new contact with invalid Company Name', () => {
         cy.get("@data").then((data) => {
+            cy.createContact(data.create[1])
             data.invalidString.forEach((val) => {
-                cy.createContact(data.create[1])
-                createContactPage.typeCompanyName(val)
-                createContactPage.clickSubmit()
-                createContactPage.checkUrl(Cypress.env('createUrl'))
-                createContactPage.checkInvalidInput(1)
-                createContactPage.checkCompanyNameValidationMessage()
+                createContactPage
+                    .typeCompanyName(val)
+                    .clickSubmit()
+                cy.url().then((url) => {
+                    if (!url.includes('new')) {
+                        const id = url.split('/').pop();
+                        createdContactId.push(id)
+                    }
+                })
+                createContactPage
+                    .checkUrl(Cypress.env('createUrl'))
+                    .checkInvalidInput(1)
+                    .checkCompanyNameValidationMessage()
             })
 
         })
     })
     it('Verify that user can not create a new contact with invalid Location', () => {
         cy.get("@data").then((data) => {
+            cy.createContact(data.create[4])
             data.invalidString.forEach((val) => {
-                cy.createContact(data.create[4])
-                createContactPage.typeLocation(val)
-                createContactPage.clickSubmit()
-                createContactPage.checkUrl(Cypress.env('createUrl'))
-                createContactPage.checkInvalidInput(1)
-                createContactPage.checkLocationValidationMessage()
+                createContactPage
+                    .typeLocation(val)
+                    .clickSubmit()
+                cy.url().then((url) => {
+                    if (!url.includes('new')) {
+                        const id = url.split('/').pop();
+                        createdContactId.push(id)
+                    }
+                })
+                createContactPage
+                    .checkUrl(Cypress.env('createUrl'))
+                    .checkInvalidInput(1)
+                    .checkLocationValidationMessage()
             })
 
         })
     })
     it('Verify that user can not create a new contact with invalid Description', () => {
         cy.get("@data").then((data) => {
+            cy.createContact(data.create[6])
             data.invalidString.forEach((val) => {
-                cy.createContact(data.create[6])
-                createContactPage.typeDescription(val)
-                createContactPage.clickSubmit()
-                createContactPage.checkUrl(Cypress.env('createUrl'))
-                createContactPage.checkInvalidInput(1)
-                createContactPage.checkDescriptionValidationMessage()
+                createContactPage
+                    .typeDescription(val)
+                    .clickSubmit()
+                cy.url().then((url) => {
+                    if (!url.includes('new')) {
+                        const id = url.split('/').pop();
+                        createdContactId.push(id)
+                    }
+                })
+                createContactPage
+                    .checkUrl(Cypress.env('createUrl'))
+                    .checkInvalidInput(1)
+                    .checkDescriptionValidationMessage()
             })
         })
     })
 
     it('Verify that user can create a new contact when leaving Link field empty', () => {
         cy.get("@data").then((data) => {
-            cy.createContact(data.create[5])
-            viewDetailContactPage.checkContact(data.create[5])
+            cy.createContact(data.create[15])
+            viewDetailContactPage.checkContact(data.create[15])
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
         })
     })
     it('Verify that user can not create a new contact when a Company Name already exists', () => {
         cy.get("@data").then((data) => {
             cy.createContact(data.create[0])
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
             data.existedCompanyName.forEach((val) => {
                 cy.createContact(data.create[8])
-                createContactPage.typeCompanyName(val)
-                createContactPage.clickSubmit()
+                createContactPage
+                    .typeCompanyName(val)
+                    .clickSubmit()
+                cy.url().then((url) => {
+                    if (!url.includes('new')) {
+                        const id = url.split('/').pop();
+                        createdContactId.push(id)
+                    }
+                })
                 createContactPage.checkUrl(Cypress.env('createUrl'))
                 cy.contains('Company Name Already Exists').should('exist')
             })
@@ -165,7 +282,19 @@ describe('Create a contact', () => {
     it('Verify that user can not create a new contact when an Email already exists', () => {
         cy.get("@data").then((data) => {
             cy.createContact(data.create[0])
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
             cy.createContact(data.create[9])
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
             createContactPage.checkUrl(Cypress.env('createUrl'))
             cy.contains('Email Already Exists').should('exist')
 
@@ -174,37 +303,96 @@ describe('Create a contact', () => {
     it('Verify that user can create a new contact when a Phone already exists', () => {
         cy.get("@data").then((data) => {
             cy.createContact(data.create[0])
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
             cy.createContact(data.create[10])
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
             viewDetailContactPage.checkContact(data.create[10])
         })
     })
     it('Verify that user can create a new contact when a Location already exists', () => {
         cy.get("@data").then((data) => {
             cy.createContact(data.create[0])
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
             cy.createContact(data.create[11])
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
             viewDetailContactPage.checkContact(data.create[11])
         })
     })
     it('Verify that user can create a new contact when a Link already exists', () => {
         cy.get("@data").then((data) => {
             cy.createContact(data.create[0])
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
             cy.createContact(data.create[12])
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
             viewDetailContactPage.checkContact(data.create[12])
         })
     })
     it('Verify that user can create a new contact when a Description already exists', () => {
         cy.get("@data").then((data) => {
             cy.createContact(data.create[0])
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
             cy.createContact(data.create[13])
+            cy.url().then((url) => {
+                if (!url.includes('new')) {
+                    const id = url.split('/').pop();
+                    createdContactId.push(id)
+                }
+            })
             viewDetailContactPage.checkContact(data.create[13])
         })
     })
     it('Verify that user can cancel the process of creating new contact info', () => {
         cy.get("@data").then((data) => {
-            cy.createContact(data.create[0])
             cy.createContact(data.create[14])
-            createContactPage.clickCancel()
-            createContactPage.checkUrl(Cypress.env('tableViewUrl'))
+            createContactPage
+                .clickCancel()
+                .checkUrl(Cypress.env('tableViewUrl'))
         })
+    })
+    afterEach(()=>{
+        if (createdContactId) {
+            createdContactId.forEach(_id => {
+                cy.request({
+                    method: 'DELETE',
+                    url: `http://localhost:8080/api/cruds/${_id}`
+                })
+            });
+            createdContactId = []
+        }
     })
 })

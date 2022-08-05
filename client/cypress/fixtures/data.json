@@ -43,7 +43,7 @@
     {
       "companyName": "Atlantic IT Solutions",
       "phone": "251-911-603566",
-      "email": "info@atlanticplc.com",
+      "email": "",
       "location": "Wello Sefer, Addis Ababa",
       "link": "",
       "description": "Atlantic IT Solutions is an ICT Company established in early 2008 GC in Ethiopia"
@@ -115,6 +115,14 @@
     {
       "companyName": "HanhNguyen IT Solutions",
       "phone": "251-456-603566"
+    },
+    {
+      "companyName": "Atlantic IT Solutions",
+      "phone": "251-911-603566",
+      "email": "info@atlanticplc.com",
+      "location": "Wello Sefer, Addis Ababa",
+      "link": "",
+      "description": "Atlantic IT Solutions is an ICT Company established in early 2008 GC in Ethiopia"
     }
   ],
   "edit":[
@@ -204,8 +212,8 @@
     "       77847&*(&*&"
   ],
   "existedCompanyName": [
+    "Atlantic IT Solutions",
     "atlantic it solutions",
-    "ATLANTIC IT SOLUTIONS",
-    "Atlantic IT Solutions"
+    "ATLANTIC IT SOLUTIONS"
   ]
 }
