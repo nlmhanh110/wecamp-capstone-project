@@ -1,6 +1,9 @@
 import { createContactPage } from "../pages/createContactPage";
 import { viewDetailContactPage } from "../pages/viewDetailContactPage";
-
+import { tableViewPage } from "../pages/tableViewPage"
+import { gridViewPage } from "../pages/gridViewPage"
+import { listViewPage } from "../pages/listViewPage"
+import { navComponent } from "../pages/navComponent"
 let createdContactId = []
 describe('Create a contact', () => {
     beforeEach(() => {
@@ -384,7 +387,39 @@ describe('Create a contact', () => {
                 .checkUrl(Cypress.env('tableViewUrl'))
         })
     })
-    afterEach(()=>{
+    it('Verify that user can cancel the process of creating new contact info', () => {
+        cy.get("@data").then((data) => {
+            cy.createContact(data.create[14])
+            createContactPage
+                .clickCancel()
+                .checkUrl(Cypress.env('tableViewUrl'))
+        })
+    })
+    it.only('Verify that user can create a contact info through Table View', () => {
+        navComponent
+            .clickTableView()
+            .checkUrl(Cypress.env('tableViewUrl'))
+        tableViewPage
+            .clickCreate()
+            .checkUrl(Cypress.env('createUrl'))
+    })
+    it.only('Verify that user can create a contact info through Grid View', () => {
+        navComponent
+            .clickGridView()
+            .checkUrl(Cypress.env('gridViewUrl'))
+        gridViewPage
+            .clickCreate()
+            .checkUrl(Cypress.env('createUrl'))
+    })
+    it.only('Verify that user can create a contact info through List View', () => {
+        navComponent
+            .clickListView()
+            .checkUrl(Cypress.env('listViewUrl'))
+        listViewPage
+            .clickCreate()
+            .checkUrl(Cypress.env('createUrl'))
+    })
+    afterEach(() => {
         if (createdContactId) {
             createdContactId.forEach(_id => {
                 cy.request({

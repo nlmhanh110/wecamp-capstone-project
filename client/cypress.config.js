@@ -9,6 +9,8 @@ module.exports = defineConfig({
     env: {
       "createUrl": "/cruds/new",
       "tableViewUrl": "/cruds",
+      "gridViewUrl":"/cruds/grid-view",
+      "listViewUrl":"/cruds/list-view"
     },
 
   },
