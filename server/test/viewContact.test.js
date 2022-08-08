@@ -22,7 +22,7 @@ describe('GET - /api/cruds/ - /api/cruds/:id', () => {
     beforeEach(() => {
         req = supertest(server)
     })
-    it('Should get all available contact info in database',async()=>{
+    it('Should get successfully all available contact info in database',async()=>{
         await req.post("/api/cruds/").send(data.create[0])
         await req.post("/api/cruds/").send(data.create[8])
         let res = await req.get("/api/cruds/")
@@ -31,14 +31,14 @@ describe('GET - /api/cruds/ - /api/cruds/:id', () => {
         expect(res.body[0].companyName).toBe(data.create[0].companyName)
         expect(res.body[1].companyName).toBe(data.create[8].companyName)
     })
-    it('Should get a contact info in detail using right ID',async()=>{
+    it('Should get a contact info in detail successfully using right ID',async()=>{
         let res1 = await req.post("/api/cruds/").send(data.create[0])
         let res2 = await req.get(`/api/cruds/${res1.body._id}`)
         expect(res2.status).toBe(200)
         console.log(res2.body)
         expect(res2.body).toMatchObject(data.create[0])
     })
-    it.only('Should not get a contact info in detail using wrong ID',async()=>{
+    it.only('Should fail to get a contact info in detail using wrong ID',async()=>{
         let res1 = await req.post("/api/cruds/").send(data.create[0])
         let res2 = await req.get(`/api/cruds/${res1.body._id}ffd`)
         expect(res2.status).toBe(404)

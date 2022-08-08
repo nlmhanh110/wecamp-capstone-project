@@ -10,7 +10,8 @@
 	"main": "node server.js",
 	"scripts": {
 		"test": "jest --verbose --silent=false",
-		"start": "node server.js"
+		"start": "node server.js",
+		"seed" :"node seedDB.js"
 	},
 	"dependencies": {
 		"axios": "^0.26.0",

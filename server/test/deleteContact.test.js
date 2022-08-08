@@ -22,7 +22,7 @@ describe('DELETE - /api/cruds/:id', () => {
     beforeEach(() => {
         req = supertest(server)
     })
-    it('Should delete a contact info in detail using right ID',async()=>{
+    it('Should delete successfully a contact info in detail using right ID',async()=>{
         let res1 = await req.post("/api/cruds/").send(data.create[0])
         let res2 = await req.delete(`/api/cruds/${res1.body._id}`)
         expect(res2.status).toBe(200)
@@ -30,7 +30,7 @@ describe('DELETE - /api/cruds/:id', () => {
         let oldContact = await Cruds.findById(res1.body._id)
         expect(oldContact).toBeNull;
     })
-    it('Should not delete a contact info in detail using wrong ID',async()=>{
+    it('Should fail to delete a contact info in detail using wrong ID',async()=>{
         let res1 = await req.post("/api/cruds/").send(data.create[0])
         let res2 = await req.delete(`/api/cruds/${res1.body._id}ffd`)
         expect(res2.status).toBe(404)

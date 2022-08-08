@@ -24,14 +24,14 @@ describe('POST - /api/cruds/ ', () => {
         req = supertest(server)
 
     })
-    it('Should post a new contact with valid values', async () => {   
+    it('Should post successfully a new contact with valid values', async () => {   
         let res = await req.post("/api/cruds/").send(data.create[0])
         expect(res.status).toBe(201)
         expect(res.body).toMatchObject(data.create[0]);
         let insertedContact = await Cruds.findById(res.body._id)
         expect(insertedContact).toMatchObject(data.create[0]);
     })
-    it('Should not post a new contact when leaving Company Name field empty', async () => {
+    it('Should fail to post a new contact when leaving Company Name field empty', async () => {
         let res = await req.post("/api/cruds/").send(data.create[1])
         expect(res.status).toBe(422)
         expect(res.body.message).toBe("Crud add failed");
@@ -39,7 +39,7 @@ describe('POST - /api/cruds/ ', () => {
         expect(insertedContact).toBeNull();
 
     })
-    it('Should not post a new contact when leaving Phone field empty', async () => {
+    it('Should fail to post a new contact when leaving Phone field empty', async () => {
         let res = await req.post("/api/cruds/").send(data.create[2])
         expect(res.status).toBe(422)
         expect(res.body.message).toBe("Crud add failed");
@@ -47,7 +47,7 @@ describe('POST - /api/cruds/ ', () => {
         expect(insertedContact).toBeNull();
 
     })
-    it('Should not post a new contact when leaving Email field empty', async () => {
+    it('Should fail to post a new contact when leaving Email field empty', async () => {
         let res = await req.post("/api/cruds/").send(data.create[3])
         expect(res.status).toBe(422)
         expect(res.body.message).toBe("Crud add failed");
@@ -55,7 +55,7 @@ describe('POST - /api/cruds/ ', () => {
         expect(insertedContact).toBeNull();
 
     })
-    it('Should not post a new contact when leaving Location field empty', async () => {
+    it('Should fail to post a new contact when leaving Location field empty', async () => {
         let res = await req.post("/api/cruds/").send(data.create[4])
         expect(res.status).toBe(422)
         expect(res.body.message).toBe("Crud add failed");
@@ -63,7 +63,7 @@ describe('POST - /api/cruds/ ', () => {
         expect(insertedContact).toBeNull();
 
     })
-    it('Should not post a new contact when leaving Description field empty', async () => {
+    it('Should fail to post a new contact when leaving Description field empty', async () => {
         let res = await req.post("/api/cruds/").send(data.create[6])
         expect(res.status).toBe(422)
         expect(res.body.message).toBe("Crud add failed");
@@ -71,7 +71,7 @@ describe('POST - /api/cruds/ ', () => {
         expect(insertedContact).toBeNull();
 
     })
-    it('Should not post a new contact when leaving all fields empty', async () => {
+    it('Should fail to post a new contact when leaving all fields empty', async () => {
         let res = await req.post("/api/cruds/").send(data.create[7])
         expect(res.status).toBe(422)
         expect(res.body.message).toBe("Crud add failed");
@@ -80,7 +80,7 @@ describe('POST - /api/cruds/ ', () => {
 
     })
     
-    it('Should post a new contact when leaving Link field empty', async () => {
+    it('Should post successfully a new contact when leaving Link field empty', async () => {
         let res = await req.post("/api/cruds/").send(data.create[5])
         expect(res.status).toBe(201)
         expect(res.body).toMatchObject(data.create[5]);
@@ -88,7 +88,7 @@ describe('POST - /api/cruds/ ', () => {
         expect(insertedContact).toMatchObject(data.create[5]);
 
     })
-    test.each(data.invalidString)('Should not post a new contact with invalid Company Name', async (invalidString) => {
+    test.each(data.invalidString)('Should fail to post a new contact with invalid Company Name', async (invalidString) => {
         let contact1 = {
             companyName: invalidString,
             phone: '251-911-603566',
@@ -103,7 +103,7 @@ describe('POST - /api/cruds/ ', () => {
         let insertedContact = await Cruds.findOne({ companyName: contact1.companyName })
         expect(insertedContact).toBeNull();
     })
-    test.each(data.invalidPhone)('Should not post a new contact with invalid Phone Number', async (invalidPhone) => {
+    test.each(data.invalidPhone)('Should fail to post a new contact with invalid Phone Number', async (invalidPhone) => {
         let contact1 = {
             companyName: 'Atlantic IT Solutions',
             phone: invalidPhone,
@@ -118,7 +118,7 @@ describe('POST - /api/cruds/ ', () => {
         let insertedContact = await Cruds.findOne({ companyName: contact1.companyName })
         expect(insertedContact).toBeNull();
     })
-    test.each(data.invalidEmail)('Should not post a new contact with invalid Email', async (invalidEmail) => {
+    test.each(data.invalidEmail)('Should fail to post a new contact with invalid Email', async (invalidEmail) => {
         let contact1 = {
             companyName: 'Atlantic IT Solutions',
             phone: '251-911-603566',
@@ -133,7 +133,7 @@ describe('POST - /api/cruds/ ', () => {
         let insertedContact = await Cruds.findOne({ companyName: contact1.companyName })
         expect(insertedContact).toBeNull();
     })
-    test.each(data.invalidLink)('Should not post a new contact with invalid Link', async (invalidLink) => {
+    test.only.each(data.invalidLink)('Should fail to post a new contact with invalid Link', async (invalidLink) => {
         let contact1 = {
             companyName: 'Atlantic IT Solutions',
             phone: '251-911-603566',
@@ -148,7 +148,7 @@ describe('POST - /api/cruds/ ', () => {
         let insertedContact = await Cruds.findOne({ companyName: contact1.companyName })
         expect(insertedContact).toBeNull();
     })
-    test.each(data.invalidString)('Should not post a new contact with invalid Location', async (invalidString) => {
+    test.only.each(data.invalidString)('Should fail to post a new contact with invalid Location', async (invalidString) => {
         let contact1 = {
             companyName: 'Atlantic IT Solutions',
             phone: '251-911-603566',
@@ -163,7 +163,7 @@ describe('POST - /api/cruds/ ', () => {
         let insertedContact = await Cruds.findOne({ companyName: contact1.companyName })
         expect(insertedContact).toBeNull();
     })
-    test.only.each(data.invalidString)('Should not post a new contact with invalid Description', async (invalidString) => {
+    test.only.each(data.invalidString)('Should fail to post a new contact with invalid Description', async (invalidString) => {
         let contact1 = {
             companyName: 'Atlantic IT Solutions',
             phone: '251-911-603566',
@@ -179,7 +179,7 @@ describe('POST - /api/cruds/ ', () => {
         expect(insertedContact).toBeNull();
     })
 
-    test.each(data.existedCompanyName)('Should not post a new contact when a Company Name already exists', async (existedCompanyName)=>{
+    test.only.each(data.existedCompanyName)('Should fail to post a new contact when a Company Name already exists', async (existedCompanyName)=>{
         let contact2 = {
             companyName: existedCompanyName,
             phone: '251-456-603566',
@@ -196,7 +196,7 @@ describe('POST - /api/cruds/ ', () => {
         let insertedContact = await Cruds.findOne({ email: contact2.email })
         expect(insertedContact).toBeNull();
     })
-    it('Should not post a new contact when a Email already exists', async ()=>{
+    it('Should fail to post a new contact when a Email already exists', async ()=>{
         let contact2 = {
             companyName: 'HanhNguyen IT Solutions',
             phone: '251-456-603546',
@@ -212,7 +212,7 @@ describe('POST - /api/cruds/ ', () => {
         let insertedContact = await Cruds.findOne({ companyName: contact2.companyName })
         expect(insertedContact).toBeNull();
     })
-    it('Should post a new contact when a Phone already exists', async ()=>{
+    it('Should post successfully a new contact when a Phone already exists', async ()=>{
         let contact2 = {
             companyName: 'HanhNguyen IT Solutions',
             phone: '251-456-603566',
@@ -228,7 +228,7 @@ describe('POST - /api/cruds/ ', () => {
         let insertedContact = await Cruds.findById(res2.body._id)
         expect(insertedContact).toMatchObject(contact2);
     })
-    it('Should post a new contact when a Location already exists', async ()=>{
+    it('Should post successfully a new contact when a Location already exists', async ()=>{
         let contact2 = {
             companyName: 'HanhNguyen IT Solutions',
             phone: '251-456-603536',
@@ -244,7 +244,7 @@ describe('POST - /api/cruds/ ', () => {
         let insertedContact = await Cruds.findById(res2.body._id)
         expect(insertedContact).toMatchObject(contact2);
     })
-    it('Should post a new contact when a Link already exists', async ()=>{
+    it('Should post successfully a new contact when a Link already exists', async ()=>{
 
         let contact2 = {
             companyName: 'HanhNguyen IT Solutions',
@@ -261,7 +261,7 @@ describe('POST - /api/cruds/ ', () => {
         let insertedContact = await Cruds.findById(res2.body._id)
         expect(insertedContact).toMatchObject(contact2);
     })
-    it('Should post a new contact when a Desciption already exists', async ()=>{
+    it('Should post successfully a new contact when a Desciption already exists', async ()=>{
         let contact2 = {
             companyName: 'HanhNguyen IT Solutions',
             phone: '251-456-643566',
