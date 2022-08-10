@@ -12,23 +12,23 @@ export const createContactPage ={
         return this;
     },
     typePhone(phone){
-        cy.get(this.TXT_PHONE).type(phone)
+        cy.get(this.TXT_PHONE).clear().type(phone)
         return this;
     },
     typeEmail(email){
-        cy.get(this.TXT_EMAIL).type(email)
+        cy.get(this.TXT_EMAIL).clear().type(email)
         return this;
     },
     typeLocation(location){
-        cy.get(this.TXT_LOCATION).type(location)
+        cy.get(this.TXT_LOCATION).clear().type(location)
         return this;
     },
     typeLink(link){
-        cy.get(this.TXT_LINK).type(link)
+        cy.get(this.TXT_LINK).clear().type(link)
         return this;
     },
     typeDescription(description){
-        cy.get(this.TXT_DESCRIPTION).type(description)
+        cy.get(this.TXT_DESCRIPTION).clear().type(description)
         return this;
     },
     clickSubmit(){

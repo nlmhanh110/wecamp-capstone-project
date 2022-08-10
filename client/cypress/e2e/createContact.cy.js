@@ -395,7 +395,7 @@ describe('Create a contact', () => {
                 .checkUrl(Cypress.env('tableViewUrl'))
         })
     })
-    it.only('Verify that user can create a contact info through Table View', () => {
+    it('Verify that user can create a contact info through Table View', () => {
         navComponent
             .clickTableView()
             .checkUrl(Cypress.env('tableViewUrl'))
@@ -403,7 +403,7 @@ describe('Create a contact', () => {
             .clickCreate()
             .checkUrl(Cypress.env('createUrl'))
     })
-    it.only('Verify that user can create a contact info through Grid View', () => {
+    it('Verify that user can create a contact info through Grid View', () => {
         navComponent
             .clickGridView()
             .checkUrl(Cypress.env('gridViewUrl'))
@@ -411,7 +411,7 @@ describe('Create a contact', () => {
             .clickCreate()
             .checkUrl(Cypress.env('createUrl'))
     })
-    it.only('Verify that user can create a contact info through List View', () => {
+    it('Verify that user can create a contact info through List View', () => {
         navComponent
             .clickListView()
             .checkUrl(Cypress.env('listViewUrl'))
