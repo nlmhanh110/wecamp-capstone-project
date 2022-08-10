@@ -7,6 +7,15 @@ import { navComponent } from "../pages/navComponent"
 let createdContactId = []
 describe('Create a contact', () => {
     beforeEach(() => {
+        if (createdContactId) {
+            createdContactId.forEach(_id => {
+                cy.request({
+                    method: 'DELETE',
+                    url: `http://localhost:8080/api/cruds/${_id}`
+                })
+            });
+            createdContactId = []
+        }
         cy.fixture("data.json").as('data')
     });
 
@@ -420,14 +429,5 @@ describe('Create a contact', () => {
             .checkUrl(Cypress.env('createUrl'))
     })
     afterEach(() => {
-        if (createdContactId) {
-            createdContactId.forEach(_id => {
-                cy.request({
-                    method: 'DELETE',
-                    url: `http://localhost:8080/api/cruds/${_id}`
-                })
-            });
-            createdContactId = []
-        }
     })
 })

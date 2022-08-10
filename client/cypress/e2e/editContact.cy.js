@@ -8,6 +8,15 @@ let createdContactId = []
 
 describe('Edit a contact', () => {
     beforeEach(() => {
+        if (createdContactId) {
+            createdContactId.forEach(_id => {
+                cy.request({
+                    method: 'DELETE',
+                    url: `http://localhost:8080/api/cruds/${_id}`
+                })
+            });
+            createdContactId = []
+        }
         cy.fixture("data.json").as('data')
         cy.get("@data").then((data) => {
             cy.createContact(data.edit[0])
@@ -430,7 +439,7 @@ describe('Edit a contact', () => {
                 .checkNotUrl("edit")
         })
     })
-    it.only('Verify that user can edit a contact info through Table View',()=>{
+    it('Verify that user can edit a contact info through Table View',()=>{
         cy.get("@data").then((data) => {
         navComponent
             .clickTableView()
@@ -445,7 +454,7 @@ describe('Edit a contact', () => {
         })
     })
 
-    it.only('Verify that user can edit a contact info through Grid View',()=>{
+    it('Verify that user can edit a contact info through Grid View',()=>{
         cy.get("@data").then((data) => {
         navComponent
             .clickGridView()
@@ -460,7 +469,7 @@ describe('Edit a contact', () => {
         })
     })
 
-    it.only('Verify that user can edit a contact info through List View',()=>{
+    it('Verify that user can edit a contact info through List View',()=>{
         cy.get("@data").then((data) => {
         navComponent
             .clickListView()
@@ -476,14 +485,5 @@ describe('Edit a contact', () => {
     })
 
     afterEach(() => {
-        if (createdContactId) {
-            createdContactId.forEach(_id => {
-                cy.request({
-                    method: 'DELETE',
-                    url: `http://localhost:8080/api/cruds/${_id}`
-                })
-            });
-            createdContactId = []
-        }
     })
 })

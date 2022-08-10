@@ -7,6 +7,15 @@ let createdContactId = []
 
 describe('View a contact', () => {
     beforeEach(() => {
+        if (createdContactId) {
+            createdContactId.forEach(_id => {
+                cy.request({
+                    method: 'DELETE',
+                    url: `http://localhost:8080/api/cruds/${_id}`
+                })
+            });
+            createdContactId = []
+        }
         cy.fixture("data.json").as('data')
         cy.get("@data").then((data) => {
             cy.createContact(data.create[0])
@@ -79,7 +88,7 @@ describe('View a contact', () => {
         })
     })
 
-    it.only('Verify that user can close, stop viewing a contact info', () => {
+    it('Verify that user can close, stop viewing a contact info', () => {
         navComponent
             .clickTableView()
             .checkUrl(Cypress.env('tableViewUrl'))
@@ -94,14 +103,5 @@ describe('View a contact', () => {
     })
 
     afterEach(() => {
-        if (createdContactId) {
-            createdContactId.forEach(_id => {
-                cy.request({
-                    method: 'DELETE',
-                    url: `http://localhost:8080/api/cruds/${_id}`
-                })
-            });
-            createdContactId = []
-        }
     })
 })

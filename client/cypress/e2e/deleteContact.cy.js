@@ -8,6 +8,15 @@ let createdContactId = []
 
 describe('Delete a contact', () => {
     beforeEach(() => {
+        if (createdContactId) {
+            createdContactId.forEach(_id => {
+                cy.request({
+                    method: 'DELETE',
+                    url: `http://localhost:8080/api/cruds/${_id}`
+                })
+            });
+            createdContactId = []
+        }
         cy.fixture("data.json").as('data')
         cy.get("@data").then((data) => {
             cy.createContact(data.create[0])
@@ -93,14 +102,5 @@ describe('Delete a contact', () => {
     })
 
     afterEach(() => {
-        if (createdContactId) {
-            createdContactId.forEach(_id => {
-                cy.request({
-                    method: 'DELETE',
-                    url: `http://localhost:8080/api/cruds/${_id}`
-                })
-            });
-            createdContactId = []
-        }
     })
 })
